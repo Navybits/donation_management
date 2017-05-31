@@ -4,7 +4,7 @@ Donation management is an Odoo module that handles the donation management betwe
 ## Purpose
 The purpose of this module was to create a simpler interface for the donation process within the charity organizations, not necessarily having a base knowledge in accounting processes or how odoo works with accounting internally.
 
-## Getting started
+You can read more in my blog post on medium here: https://blog.navybits.com/non-profit-acounting-challenge-in-odoo-10-0-9f0fe7b73d57
 
 ### Prerequisites
 

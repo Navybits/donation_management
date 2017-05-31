@@ -1,0 +1,61 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <data>
+    <record id="create_sponsor_form_view" model="ir.ui.view">
+      <field name="name">sponsor.form</field>
+      <field name="model">test4.sponsor</field>
+      <field name="arch" type="xml">
+        <form string="sponsor form">
+          <sheet>
+            <group>
+              <group string="Personal details">
+                <field name="serial_number"/>
+                <field name="name"/>
+                <field name="phone_number"/>
+                <field name="home_number"/>
+                <field name="email"/>
+                <field name="address"/>
+                <field name="job"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Beneficiaries">
+                <group>
+                  <field name="beneficiary_ids"/>
+                </group>
+              </page>
+              <page string="Notes">
+                <group>
+                  <field name="notes"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- override the automatically generated list view for courses -->
+    <record id="sponsor_tree_view" model="ir.ui.view">
+      <field name="name">sponsor.tree</field>
+      <field name="model">test4.sponsor</field>
+      <field name="arch" type="xml">
+        <tree string="sponsor Tree">
+          <field name="serial_number"/>
+          <field name="name"/>
+          <field name="phone_number"/>
+          <field name="home_number"/>
+          <field name="email"/>
+          <field name="address"/>
+          <field name="job"/>
+        </tree>
+      </field>
+    </record>
+    <record id="sponsor_list_action" model="ir.actions.act_window">
+      <field name="name">sponsor</field>
+      <field name="res_model">test4.sponsor</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

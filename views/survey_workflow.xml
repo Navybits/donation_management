@@ -1,0 +1,66 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="wkf_session" model="workflow">
+            <field name="name">Test 4 workflow</field>
+            <field name="osv">test4.survey</field>
+            <field name="on_create">True</field>
+        </record>
+        <record id="draft" model="workflow.activity">
+            <field name="name">Draft</field>
+            <field name="wkf_id" ref="wkf_session"/>
+            <field eval="True" name="flow_start"/>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+        <record id="review" model="workflow.activity">
+            <field name="name">review</field>
+            <field name="wkf_id" ref="wkf_session"/>
+            <field name="kind">function</field>
+            <field name="action">action_review()</field>
+        </record>
+        <record id="reject" model="workflow.activity">
+            <field name="name">reject</field>
+            <field name="wkf_id" ref="wkf_session"/>
+            <field name="kind">function</field>
+            <field name="action">action_reject()</field>
+        </record>
+        <record id="approved" model="workflow.activity">
+            <field name="name">approved</field>
+            <field name="wkf_id" ref="wkf_session"/>
+            <field name="kind">function</field>
+            <field name="action">action_approved()</field>
+        </record>
+        <record id="session_draft_to_review" model="workflow.transition">
+            <field name="act_from" ref="draft"/>
+            <field name="act_to" ref="review"/>
+            <field name="signal">review</field>
+        </record>
+        <record id="session_draft_to_approved" model="workflow.transition">
+            <field name="act_from" ref="draft"/>
+            <field name="act_to" ref="approved"/>
+            <field name="group_id" ref="workflow_admin"/>
+            <field name="signal">approved</field>
+        </record>
+        <record id="session_draft_to_reject" model="workflow.transition">
+            <field name="act_from" ref="draft"/>
+            <field name="act_to" ref="reject"/>
+            <field name="group_id" ref="workflow_admin"/>
+            <field name="signal">reject</field>
+        </record>
+        <record id="session_review_to_reject" model="workflow.transition">
+            <field name="act_from" ref="review"/>
+            <field name="act_to" ref="reject"/>
+            <field name="group_id" ref="workflow_admin"/>
+            <field name="signal">reject</field>
+        </record>
+        <record id="session_review_to_approved" model="workflow.transition">
+            <field name="act_from" ref="review"/>
+            <field name="act_to" ref="approved"/>
+            <field name="group_id" ref="workflow_admin"/>
+            <field name="signal">approved</field>
+        </record>
+        <!--  <record id="session_approved_to_draft" model="workflow.transition"><field name="act_from" ref="approved"/><field name="act_to" ref="draft"/><field name="group_id" ref="workflow_admin"/><field name="signal">draft</field></record>-->
+    </data>
+</odoo>

@@ -1,0 +1,49 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <data>
+    <record id="kafele_form_view" model="ir.ui.view">
+      <field name="name">kafele.form</field>
+      <field name="model">test4.kafele</field>
+      <field name="arch" type="xml">
+        <form string="kafele form">
+          <header>
+            <button name="create_invoices" string="Create Invoice" type="object"/>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field name="sponsor_id"/>
+                <field name="beneficiary_id"/>
+              </group>
+              <group>
+                <field name="kafele_type"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+              </group>
+            </group> 
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- override the automatically generated list view for courses -->
+    <record id="kafele_tree_view" model="ir.ui.view">
+      <field name="name">kafele.tree</field>
+      <field name="model">test4.kafele</field>
+      <field name="arch" type="xml">
+        <tree string="kafele Tree">
+          <field name="sponsor_id"/>
+          <field name="beneficiary_id"/>
+          <field name="kafele_type"/>
+          <field name="start_date"/>
+        </tree>
+      </field>
+    </record>
+    <record id="kafele_list_action" model="ir.actions.act_window">
+      <field name="name">kafele</field>
+      <field name="res_model">test4.kafele</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

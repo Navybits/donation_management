@@ -1,0 +1,101 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <data>
+    <record id="create_survey_form_view" model="ir.ui.view">
+      <field name="name">survey.form</field>
+      <field name="model">test4.survey</field>
+      <field name="arch" type="xml">
+        <form string="survey form">
+          <header>
+            <!-- <button groups="test4.workflow_admin" name="draft" states="review" string="Reset to draft" type="workflow"/>-->
+            <button class="oe_highlight" groups="test4.workflow_de" name="review" states="draft" string="Submit survey for review" type="workflow"/>
+            <button class="oe_highlight" groups="test4.workflow_de" name="reject" states="draft" string="Reject survey" type="workflow"/>
+            <button class="oe_highlight" groups="test4.workflow_admin" name="approved" states="draft,review" string="Approve beneficiary" type="workflow"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <sheet>
+            <group>
+              <group string="survey Details">
+                <field name="date_created"/>
+                <!-- <field name="name"/>-->
+                <field name="type_survey"/>
+              </group>
+              <group string="Users related to the survey">
+                <field name="user_id"/>
+                <field name="approved_by_id"/>
+              </group>
+            </group>
+            <group>
+              <group string="Personal details">
+                <field name="serial_number"/>
+                <field name="beneficiary_name"/>
+                <field name="gender" widget="radio"/>
+                <field name="phone"/>
+                <field name="mobile"/>
+                <field name="is_responsible"/>
+                <field name="beneficiary_id" readonly="1"/>
+              </group>
+              <group string="Address details">
+                <field name="region"/>
+                <field name="street"/>
+                <field name="near"/>
+                <field name="above"/>
+                <field name="beside"/>
+                <field name="facing"/>
+                <field name="building"/>
+                <field name="floor"/>
+              </group>
+            </group>
+            <group string="Reasons for help">
+              <field name="reasons_for_help"/>
+              <field name="notes"/>
+            </group>
+            <!--             <button name="append_survey_to_an_existing_beneficiary" string="Append istimiara to a beneficiary" type="object"/>-->
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+    <!-- override the automatically generated list view for courses -->
+    <record id="create_survey_tree_view" model="ir.ui.view">
+      <field name="name">survey.tree</field>
+      <field name="model">test4.survey</field>
+      <field name="arch" type="xml">
+        <tree string="survey Tree">
+          <field name="serial_number"/>
+          <field name="type_survey"/>
+          <field name="beneficiary_name"/>
+          <field name="reasons_for_help"/>
+          <field name="user_id"/>
+          <field name="approved_by_id"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+    <record id="survey_graph_view" model="ir.ui.view">
+      <field name="name">test4.survey.graph</field>
+      <field name="model">test4.survey</field>
+      <field name="arch" type="xml">
+        <graph string="Survey graph">
+          <!-- <field name="gender"/> -->
+          <!-- <field name="type_survey"/> -->
+          <!-- <field name="male_count" type="measure"/> -->
+        </graph>
+      </field>
+    </record>
+    <record id="create_survey_list_action" model="ir.actions.act_window">
+      <field name="name">survey</field>
+      <field name="res_model">test4.survey</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form,graph</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first survey
+                </p>
+      </field>
+    </record>
+  </data>
+</odoo>

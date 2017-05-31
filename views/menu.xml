@@ -1,0 +1,26 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+	<data>
+		<menuitem id="main_test4_menu" name="Donation Management"/>
+		<!-- A first level in the left side menu is needed
+             before using action= attribute -->
+		<menuitem id="test4_menu" name="Persons" parent="main_test4_menu"/>
+		<menuitem id="test4_menu_2" name="Donations" parent="main_test4_menu"/>
+		<menuitem id="test4_menu_3" name="Kafalat" parent="main_test4_menu"/>		
+		<!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+		<!-- <menuitem action="party_list_action" id="party_menu" name="Party" parent="test4_menu"/> -->
+		<!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+		<menuitem action="create_survey_list_action" id="survey_menu" name="survey" parent="test4_menu"/>
+		<menuitem action="beneficiary_list_action" id="beneficiaires_menu" name="beneficiaries" parent="test4_menu"/>
+		<menuitem action="sponsor_list_action" id="sponsors_menu" name="donors" parent="test4_menu"/>
+		<menuitem action="donation_list_action" id="donations_menu" name="donation" parent="test4_menu_2"/>
+		<menuitem action="kafele_list_action" id="kafele_menu" name="kafele" parent="test4_menu_3"/>
+		<menuitem action="kafele_invoie_list_action" id="kafele_invoice_menu" name="kafele invoice" parent="test4_menu_3"/>
+<!-- 		<menuitem action="update_survey_list_action" id="update_survey_menu" name="survey Update" parent="test4_menu"/> -->
+	</data>
+</odoo>

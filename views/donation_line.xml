@@ -1,0 +1,41 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <data>
+    <record id="donation_line_form_view" model="ir.ui.view">
+      <field name="name">donation_line.form</field>
+      <field name="model">test4.donation_line</field>
+      <field name="arch" type="xml">
+        <form string="donation_line form">
+          <sheet>
+            <field name="beneficiary_id"/>
+            <field name="amount"/>
+            <field name="journal_id"/>
+            <field name="payment_method_id"/>
+            <field name="beneficiary_payment_reference_id"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- override the automatically generated list view for courses -->
+    <record id="donation_line_tree_view" model="ir.ui.view">
+      <field name="name">donation_line.tree</field>
+      <field name="model">test4.donation_line</field>
+      <field name="arch" type="xml">
+        <tree string="donation_line Tree">
+          <field name="beneficiary_id"/>
+          <field name="amount"/>
+          <field name="journal_id"/>
+          <field name="payment_method_id"/>
+          <field name="beneficiary_payment_reference_id"/>
+        </tree>
+      </field>
+    </record>
+    <record id="donation_line_list_action" model="ir.actions.act_window">
+      <field name="name">donation_line</field>
+      <field name="res_model">test4.donation_line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

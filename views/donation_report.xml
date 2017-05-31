@@ -1,0 +1,61 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<data>
+    <report
+        id="report_donation_sponsor_voucher"
+        model="test4.donation"
+        string="Sponsor Voucher Report"
+        name="test4.report_donation_sponsor_voucher_view"
+        file="test4.report_donation_sponsor_voucher"
+        report_type="qweb-pdf" />
+
+    <template id="report_donation_sponsor_voucher_view">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <br/>
+                        <h2 t-field="doc.sponsor_payment_reference_id.name"/>
+                        <p>Date: <span t-field="doc.sponsor_payment_reference_id.payment_date"/></p>
+                        <p> The amount:<span t-field="doc.total_amount"/>$ has been received from the sponsor:<span t-field="doc.sponsor_id.name"/></p>
+                       <!--  <ul>
+                            <t t-foreach="doc.attendee_ids" t-as="attendee">
+                                <li><span t-field="attendee.name"/></li>
+                            </t>
+                        </ul> -->
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+        <report
+        id="report_donations_voucher"
+        model="test4.donation"
+        string="Sponsor Donations Voucher Report"
+        name="test4.report_donations_voucher_view"
+        file="test4.report_donations_voucher"
+        report_type="qweb-pdf" />
+
+    <template id="report_donations_voucher_view">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <br/>
+                        <h2 t-field="doc.sponsor_payment_reference_id.name"/>
+                        <p>Date: <span t-field="doc.sponsor_payment_reference_id.payment_date"/></p>
+                        <p> The amount:<span t-field="doc.total_amount"/>$ has been transfered to the following beneficiaries:</p>
+                        <ul>
+                            <t t-foreach="doc.donation_line_ids" t-as="line">
+                                <li><span t-field="line.beneficiary_id.name"/> received <span t-field="line.amount"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</odoo>

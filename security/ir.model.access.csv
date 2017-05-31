@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+workflow_test,workflow test,model_test4_survey,workflow_admin,1,1,1,1
+workflow_test3, workflow test 3,model_test4_survey,workflow_de,1,1,1,1

@@ -1,0 +1,12 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+	<data>
+		<record id="workflow_admin" model="res.groups">
+			<field name="name">Test4 / Workflow Admin</field>
+		</record>
+		<record id="workflow_de" model="res.groups">
+			<field name="name">Test4 / Workflow Data Entry</field>
+		</record>
+	</data>
+</odoo>

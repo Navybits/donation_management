@@ -1,0 +1,96 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <data>
+    <record id="donation_form_view" model="ir.ui.view">
+      <field name="name">donation.form</field>
+      <field name="model">test4.donation</field>
+      <field name="arch" type="xml">
+        <form string="donation form">
+          <header>
+            <button name="create_invoice_and_pay" string="create invoice and pay automatically" type="object"/>
+            <button name="transfer_and_create_journal_entries" string="transfer and create journal entries" type="object"/>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field invisible="1" name="money_all_received"/>
+                <field name="sponsor_id"/>
+                <field name="total_amount"/>
+                <field name="currency_id"/>
+                <field name="product_id"/>
+              </group>
+              <group>
+                <field name="journal_id"/>
+                <field name="account_analytic_id"/>
+                <field name="payment_method_id"/>
+                <!-- <field name="beneficiary_id"/>-->
+                <!-- <field name="sponsor_payment_reference_id"/>-->
+                <field name="sponsor_invoice_reference_id"/>
+                <!-- <field name="beneficiary_payment_reference_id"/>-->
+              </group>
+            </group>
+            <notebook>
+              <page string="Donations">
+                <field mode="tree" name="donation_line_ids" widget="one2many_list">
+                  <tree editable="bottom" string="Donation lines">
+                    <field name="beneficiary_id"/>
+                    <field name="amount"/>
+                    <field name="label"/>
+                    <field name="source_account_id"/>
+                    <field name="dest_account_id"/>
+                    <field name="analytic_account_id"/>
+                    <field name="journal_id"/>
+                    <field name="journal_entry_id" readonly="1"/>
+                    <!--  <field name="journal_id"/><field name="payment_method_id"/>-->
+                    <!-- <field name="beneficiary_payment_reference_id" readonly="1"/>-->
+                  </tree>
+                </field>
+                <group class="oe_subtotal_footer oe_right">
+                  <field name="total_amount_2" readonly="1"/>
+                  <field name="amount_to_transfer" readonly="1"/>
+                  <field class="oe_subtotal_footer_separator" name="amount_transfered" readonly="1"/>
+                </group>
+              </page>
+            </notebook>
+            <!-- <button name="donate" string="donate" type="object"/>-->
+            <!-- <button name="transfer" string="transfer" type="object"/>-->
+            
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- override the automatically generated list view for courses -->
+    <record id="donation_tree_view" model="ir.ui.view">
+      <field name="name">donation.tree</field>
+      <field name="model">test4.donation</field>
+      <field name="arch" type="xml">
+        <tree string="donation Tree">
+          <field name="sponsor_id"/>
+          <field name="total_amount"/>
+          <field name="amount_transfered_2"/>
+          <field name="currency_id"/>
+          <field name="account_analytic_id"/>
+          <field name="sponsor_invoice_reference_id"/>
+        </tree>
+      </field>
+    </record>
+    <record id="donation_search_view" model="ir.ui.view">
+      <field name="name">donation.search</field>
+      <field name="model">test4.donation</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="sponsor_id"/>
+          <!-- <field name="money_all_received"/>-->
+          <filter domain="[('money_all_received', '=', False)]" name="benef_no_donations" string="Beneficiaries didn't receive money"/>
+        </search>
+      </field>
+    </record>
+    <record id="donation_list_action" model="ir.actions.act_window">
+      <field name="name">donation</field>
+      <field name="res_model">test4.donation</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

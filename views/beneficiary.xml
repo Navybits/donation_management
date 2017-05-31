@@ -1,0 +1,74 @@
+<!-- Copyright 2017 Navybits 
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <data>
+    <record id="create_beneficiary_form_view" model="ir.ui.view">
+      <field name="name">beneficiary.form</field>
+      <field name="model">test4.beneficiary</field>
+      <field name="arch" type="xml">
+        <form string="beneficiary form">
+          <sheet>
+            <group>
+              <group string="Personal details">
+                <field name="serial_number"/>
+                <field name="name"/>
+                <field name="gender" widget="radio"/>
+                <field name="phone"/>
+                <field name="mobile"/>
+                <field name="is_responsible"/>
+                <field name="responsible_id" attrs="{'invisible': [('is_responsible','=', True)]}"/>
+                <field name="child_ids" attrs="{'invisible': [('is_responsible','=', False)]}"/>
+              </group>
+              <group string="Address details">
+                <field name="region"/>
+                <field name="street"/>
+                <field name="near"/>
+                <field name="above"/>
+                <field name="beside"/>
+                <field name="facing"/>
+                <field name="building"/>
+                <field name="floor"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Surveys">
+                <group>
+                  <field name="main_survey_id" readonly="1"/>
+                </group>
+              </page>
+              <page string="Sponsors">
+                <group>
+                  <field name="sponsor_ids"/>
+                </group>
+              </page>
+              <page string="Notes">
+                <group>
+                  <field name="notes"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="beneficiary_tree_view" model="ir.ui.view">
+      <field name="name">beneficiary.tree</field>
+      <field name="model">test4.beneficiary</field>
+      <field name="arch" type="xml">
+        <tree string="beneficiary Tree">
+          <field name="serial_number"/>  
+          <field name="name"/> 
+          <field name="gender"/>
+          <field name="phone"/>
+          <field name="is_responsible"/>
+        </tree>
+      </field>
+    </record>
+    <record id="beneficiary_list_action" model="ir.actions.act_window">
+      <field name="name">beneficiary</field>
+      <field name="res_model">test4.beneficiary</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>
